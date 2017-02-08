@@ -1,12 +1,13 @@
-class Solution(object):
-    def twoSum(self, nums, target):
-        
-        buss={}
-        if nums>=2:
-            for i in range(len(nums)):
-                #如果nums[i]在字典裏面,就是答案,返回答案
-                if nums[i] in buss:
-                    return [buss[nums[i]],i]
-                #拿nums[i]減去答案的值,存入字典,如果有值符合那就是答案
-                else:
-                    buss[target-nums[i]]=i
+class Solution:
+    def lengthOfLongestSubstring(self, s):
+        start=0
+        mexlen=0
+        drop={}
+        for i in range(len(s)):
+            #查看s[i]是否在字典中而且指針在s[i]的後面
+            if (s[i] in drop) and start<=drop[s[i]] :
+                start=drop[s[i]]+1
+            else:
+                mexlen=max(mexlen,i+1-start) 
+            drop[s[i]]=i
+        return mexlen
